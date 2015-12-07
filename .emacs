@@ -11,6 +11,9 @@
 (setq display-time-24hr-format t)         ; In 24 hour format
 (setq display-time-day-and-date t)
 
+;;buffer everything
+;;(setq term-buffer-maximum-size 0)
+
 (display-time)                      ; Display the time
 (transient-mark-mode t)
 
@@ -117,7 +120,7 @@
 (menu-bar-mode nil)
 
 (defun my-c++-mode-hook()
-  (setq tab-width 4 indent-tabs-mode nil)
+  (setq tab-width 8 indent-tabs-mode nil)
   (c-set-style "stroustrup")
 )
 
@@ -208,7 +211,8 @@
 (global-set-key "\M-." 'cscope-find-global-definition)
 (global-set-key "\M-+" 'cscope-next-symbol)
 (global-set-key "\M-_" 'cscope-prev-symbol)
-(global-set-key "\M-*" 'cscope-pop-mark)
+;;(global-set-key "\M-*" 'cscope-pop-mark)
+(global-set-key "\M-," 'cscope-pop-mark)
 
 (global-set-key "%" 'match-paren)
           
@@ -223,6 +227,7 @@
   ;; If you edit it by hand, you could mess it up, so be careful.
   ;; Your init file should contain only one such instance.
   ;; If there is more than one, they won't work right.
+ '(ecb-layout-window-sizes nil)
  '(safe-local-variable-values (quote ((compile-command-alphaLX . "gcc -DMODULE -Wall -Wstrict-prototypes -O2 -c yellowfin.c -fomit-frame-pointer -fno-strength-reduce -mno-fp-regs -Wa,-m21164a -DBWX_USABLE -DBWIO_ENABLED") (c-set-style . "BSD")))))
 (custom-set-faces
   ;; custom-set-faces was added by Custom.
@@ -283,9 +288,151 @@
 (add-hook 'comint-input-filter-functions 'my-shell-mode-auto-rename-buffer-input-filter)
 
 ;;(add-to-list 'load-path (expand-file-name "/home/songsy/.lisp/my_emacs_lisp/jde/lisp"))
-;;(add-to-list 'load-path (expand-file-name "/home/songsy/.lisp/my_emacs_lisp/cedet/common"))
-;;(load-file (expand-file-name "/home/songsy/.lisp/my_emacs_lisp/cedet/common/cedet.el"))
+(add-to-list 'load-path (expand-file-name "~/.emacs.d/.lisp/cedet/common/"))
+;;(load-file (expand-file-name "~/.emacs.d/.lisp/cedet/common/cedet.el"))
 ;;(add-to-list 'load-path (expand-file-name "/home/songsy/.lisp/my_emacs_lisp/elib"))
 
 ;;(require 'jde)
 ;;(server-start)
+
+
+
+
+;;(if (not window-system);; Only use in tty-sessions.
+;;     (progn
+;;      (defvar arrow-keys-map (make-sparse-keymap) "Keymap for arrow keys")
+;;      (define-key esc-map "[" arrow-keys-map)
+;;      (define-key arrow-keys-map "A" 'previous-line)
+;;      (define-key arrow-keys-map "B" 'next-line)
+;;      (define-key arrow-keys-map "C" 'forward-char)
+;;      (define-key arrow-keys-map "D" 'backward-char)))
+
+
+
+
+
+;;(defun ecba ()
+;;  (interactive "")
+;;  (when (locate-library "ecb")
+;;    (require 'ecb-autoloads) ;;加载ecb
+;;    (setq ecb-auto-activate nil
+;;	  ecb-tip-of-the-day nil
+;;	  ecb-tree-indent 4
+;;	  ecb-windows-height 0.5
+;;	  ecb-windows-width 0.18
+;;	  ecb-auto-compatibility-check nil
+;;	  ecb-version-check nil
+;;	  inhibit-startup-message t)
+;;  )
+  ;; cedet
+;;  (when (locate-library "cedet")
+;;    (require 'cedet)
+;;  )
+;;  (ecb-activate)
+;;)
+
+
+
+
+;;for cedet
+;;(load-file "~/.emacs.d/.lisp/cedet/common/cedet.el")
+
+;; Enabling Semantic (code-parsing, smart completion) features
+;; Select one of the following:
+;;(semantic-load-enable-minimum-features)
+;;(semantic-load-enable-code-helpers)
+;;(semantic-load-enable-gaudy-code-helpers)
+;;(semantic-load-enable-excessive-code-helpers)
+;;(semantic-load-enable-semantic-debugging-helpers)
+
+
+;; Enable source code folding
+;;(global-semantic-tag-folding-mode 1)
+
+
+;; Key bindings
+;;(defun my-cedet-hook ()
+;;  (local-set-key [(control return)] 'semantic-ia-complete-symbol)
+;;  (local-set-key "\C-c?" 'semantic-ia-complete-symbol-menu)
+;;  (local-set-key "\C-cd" 'semantic-ia-fast-jump)
+;;  (local-set-key "\C-cr" 'semantic-symref-symbol)
+;;  (local-set-key "\C-cR" 'semantic-symref))
+;;(add-hook 'c-mode-common-hook 'my-cedet-hook)
+
+;;(defun my-c-mode-cedet-hook ()
+;;  (local-set-key "." 'semantic-complete-self-insert)
+;;  (local-set-key ">" 'semantic-complete-self-insert))
+;;(add-hook 'c-mode-common-hook 'my-c-mode-cedet-hook)
+
+
+
+
+
+;;(defun my-indent-or-complete ()
+;;   (interactive)
+;;   (if (looking-at "//>")
+;;          (hippie-expand nil)
+;;          (indent-for-tab-command))
+;;)
+
+;;(global-set-key [(control tab)] 'my-indent-or-complete)
+
+;;(autoload 'senator-try-expand-semantic "senator")
+;;(setq hippie-expand-try-functions-list
+;;          '(
+;;              senator-try-expand-semantic
+;;                   try-expand-dabbrev
+;;                   try-expand-dabbrev-visible
+;;                   try-expand-dabbrev-all-buffers
+;;                   try-expand-dabbrev-from-kill
+;;                   try-expand-list
+;;                   try-expand-list-all-buffers
+;;                   try-expand-line
+;;        try-expand-line-all-buffers
+;;        try-complete-file-name-partially
+;;        try-complete-file-name
+;;        try-expand-whole-kill
+;;        )
+;;)
+
+
+
+;; for ecb
+;;(add-to-list 'load-path "~/.emacs.d/.lisp/ecb")
+;;(require 'ecb)
+
+
+;;(setq ecb-auto-activate  nil)
+;;(setq ecb-tip-of-the-day nil)
+
+;;(setq ecb-options-version "2.40")
+
+
+
+;;(global-set-key "\C-cea" 'ecb-activate)
+;;(global-set-key "\C-cea" 'ecba)
+;;(global-set-key "\C-ced" 'ecb-deactivate)
+
+;;(global-set-key "\M-left"  'windmove-left)
+;;(global-set-key "\M-right" 'windmove-right)
+;;(global-set-key "\M-up"    'windmove-up)
+;;(global-set-key "\M-down"  'windmove-down)
+
+;;(global-set-key [(control f1)] 'ecb-hide-ecb-windows)
+;;(global-set-key [(control f2)] 'ecb-show-ecb-windows)
+
+
+;;(global-set-key "\C-c0" 'ecb-maximize-window-directories)
+;;(global-set-key "\C-c1" 'ecb-maximize-window-sources)
+;;(global-set-key "\C-c2" 'ecb-maximize-window-methods)
+;;(global-set-key "\C-c3" 'ecb-maximize-window-history)
+;;(global-set-key "\C-cgd" 'ecb-goto-window-directories)
+;;(global-set-key "\C-cgs" 'ecb-goto-window-sources)
+;;(global-set-key "\C-cgm" 'ecb-goto-window-methods)
+;;(global-set-key "\C-cgh" 'ecb-goto-window-history)
+;;(global-set-key "\C-cge" 'ecb-goto-window-history)
+
+;;(global-set-key "\C-c`" 'ecb-restore-default-window-sizes)
+
+
+
